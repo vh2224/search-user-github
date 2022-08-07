@@ -1,9 +1,11 @@
+import Home from './pages/Home/index';
+import UserProvider from './context/userContext';
 function App() {
 
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <UserProvider>
+      <Home />
+    </UserProvider>
   )
 }
 
