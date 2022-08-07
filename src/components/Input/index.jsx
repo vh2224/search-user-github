@@ -5,9 +5,7 @@ const Input = ({children, type, placeholder, onChange, onClick, value, onKeyPres
   return (
     <Container>
       <Row type={type} placeholder={placeholder} onChange={onChange} value={value} onKeyPress={onKeyPress} />
-      <button onClick={onClick}>
-        {children}
-      </button>
+      {children}
     </Container>
   );
 

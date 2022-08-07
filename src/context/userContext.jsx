@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { api } from '../services/api';
 import { createContext } from "react";
 
 export const UserContext = createContext({});
 
-
 function UserProvider({ children }) {
+
+  
+  const [userRepos, setUserRepos] = useState([]);
+
 
   const getUserData = async ( user ) => {
 
@@ -23,16 +26,12 @@ function UserProvider({ children }) {
   
   const getUserRepos = async ( user ) => {
 
-    let userRepos = [];
-
     await api.get(`users/${user}/repos`)
       .then(response => {
-        userRepos = response.data;
+        setUserRepos(response.data);
       }).catch(error => {
         console.log(error);
       });
-      return userRepos;
-
   };
 
   const getBranches = async ( user, branch ) => {
@@ -82,7 +81,7 @@ function UserProvider({ children }) {
 
 
   return (
-    <UserContext.Provider value={{ getUserData, getUserRepos, getBranches, getCommits }}>
+    <UserContext.Provider value={{ getUserData, getUserRepos, userRepos, getBranches, getCommits }}>
       {children}
     </UserContext.Provider>
   )

@@ -12,13 +12,23 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
+  .close-modal {
+    position: absolute;
+    top: -50px;
+    right: -80px;
+  }
+
 `;
 
 export const Content = styled.div`
 
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   height: 350px;
   width: 350px;
-  background-color: #FFF;
-
+  background-color: #1F282C;
+  padding: 10px;
 
 `;

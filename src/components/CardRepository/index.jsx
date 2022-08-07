@@ -25,14 +25,14 @@ const CardRepository = ({ driver }) => {
     setBranches([]);
   };
 
-  console.log(branches);
-
   return (
 
     <Container>
-      <div>{driver.name}</div>
-      <div>{driver.language}</div>
-      <div>{getCreateDate(driver.created_at)}</div>
+      <div class="repo-data">
+        <p>Repositório: <span>{driver.name}</span></p>
+        <p>Linguagem: <span>{driver.language}</span></p>
+        <p>Data Criação: <span>{getCreateDate(driver.created_at)}</span></p>
+      </div>
       <button onClick={() => handleGetBranches(driver.owner.login, driver.name)}>Buscar Branches</button>
       {branches.length > 0 && (
         <Modal onClick={() => handleClose()}>

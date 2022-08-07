@@ -6,8 +6,8 @@ const Modal = ({ children, onClick }) => {
     <Container>
       <Content>
         {children}
+        <button class="close-modal" onClick={onClick}>Close</button>
       </Content>
-      <button onClick={onClick}>Close</button>
     </Container>
   );
 

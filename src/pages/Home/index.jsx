@@ -3,12 +3,18 @@ import { Container } from "./styled";
 import { UserContext } from "../../context/userContext";
 import User from "../User/index";
 import Input from "../../components/Input/index";
+import Repository from "../Repository/index";
 
 const Home = () => {
-  const { getUserData } = useContext(UserContext);
+  const { getUserData, userRepos } = useContext(UserContext);
 
   const [userData, setUserData] = useState({});
   const [user, setUser] = useState("");
+  const [repository, setRepository] = useState({});
+
+  useEffect(() => {
+    setRepository(userRepos);
+  }, [userRepos]);
 
   let data = {}
 
@@ -28,6 +34,7 @@ const Home = () => {
 
   const handleClearData = () => {
     setUserData({});
+    setRepository({});
     setUser("");
   };
 
@@ -37,15 +44,19 @@ const Home = () => {
         type={"text"}
         value={user}
         onChange={(e) => setUser(e.target.value)}
-        onClick={(e) => handleGetData(e, user)}
         onKeyPress={(e) => {
           handleGetData(e, user);
         }}
       >
-        Buscar
+        <button onClick={(e) => handleGetData(e, user)} type={'search'}>Buscar Usuario</button>
+        {Object.keys(userData).length > 0 && (
+        <button onClick={() => handleClearData()}>Limpar Dados</button>
+      )}
       </Input>
-      <button onClick={() => handleClearData()}>Limpar</button>
       <User driver={userData} />
+      {Object.keys(repository).length > 0 && (
+        <Repository driver={repository} />
+      )}
     </Container>
   );
 };

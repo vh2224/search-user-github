@@ -13,8 +13,6 @@ const CardBranch = ({ driver }) => {
     setCommits(commits);
   };
 
-  console.log(commits);
-
   return (
     driver && (
       <Container>
